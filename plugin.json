@@ -1,9 +1,9 @@
 {
-  "name": "plugin-sample-vite-svelte",
-  "author": "frostime",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.3.5",
-  "minAppVersion": "3.0.12",
+  "name": "siyuan-dashboard",
+  "author": "jzman",
+  "url": "https://github.com/jzmanu/siyuan-dashboard",
+  "version": "1.0.0",
+  "minAppVersion": "3.1.1",
   "backends": [
     "windows",
     "linux",
@@ -20,12 +20,12 @@
     "desktop-window"
   ],
   "displayName": {
-    "en_US": "Plugin sample with vite and svelte",
-    "zh_CN": "插件样例 vite + svelte 版"
+    "en_US": "siyuan-dashboard",
+    "zh_CN": "思源仪表盘"
   },
   "description": {
-    "en_US": "SiYuan plugin sample with vite and svelte",
-    "zh_CN": "使用 vite 和 svelte 开发的思源插件样例"
+    "en_US": "SiYuan dashboard, the best SiYuan data statistics plugin.",
+    "zh_CN": "思源仪表盘，最好的思源数据统计插件。"
   },
   "readme": {
     "en_US": "README.md",
@@ -37,6 +37,6 @@
     ]
   },
   "keywords": [
-    "plugin", "sample", "插件样例"
+    "仪表盘", "字数统计", "字数","words", "word", "dashboard", "analyse","data"
   ]
 }
