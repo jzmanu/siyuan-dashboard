@@ -4,7 +4,6 @@
   const version = "1.0.0";
   const github = "https://github.com/jzmanu/siyuan-dashboard";
   const author = "jzman";
-  const wechatPublic = "躬行之";
 </script>
 
 {#if show}
