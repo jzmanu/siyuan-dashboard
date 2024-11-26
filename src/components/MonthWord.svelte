@@ -28,7 +28,7 @@
           data: data.values,
           backgroundColor: '#6478FF',
           borderRadius: 4,
-          barThickness: 8
+          barThickness: 20
         }]
       },
       options: {

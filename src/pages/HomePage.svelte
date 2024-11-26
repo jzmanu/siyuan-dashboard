@@ -116,16 +116,21 @@
 
 
   .stats-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 2rem;
+    flex-wrap: nowrap;
+    width: 100%;
   }
 
   .stat-card {
+    flex: 1;
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
+    min-width: 180px;
+    max-width: 250px;
   }
 
   .stat-value {
@@ -138,6 +143,23 @@
   .stat-label {
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
+  }
+
+  .stat-label h4 {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 800px) {
+    .stats-cards {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .stat-card {
+      min-width: 150px;
+      flex: 0 1 calc(50% - 20px);
+    }
   }
 
   .footer-quote {

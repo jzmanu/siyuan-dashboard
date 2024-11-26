@@ -247,8 +247,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 15px 0;
-    width: 100px;
+    margin: 15px;
+    width: 130px;
   }
 
   :global(html[data-theme-mode="light"]) .stat-box {
@@ -259,20 +259,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 15px 0;
-    width: 100px;
+    margin: 15px;
+    width: 130px;
   }
   
   :global(html[data-theme-mode="dark"]) .stat-box h3 {
     color: #a1a1b2;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 10px;
     text-align: center;
   }
 
   :global(html[data-theme-mode="light"]) .stat-box h3 {
     color: #ffffff;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 10px;
     text-align: center;
   }
@@ -286,7 +286,7 @@
   
   .chart-section {
     padding: 0;
-
+    margin-left: 40px;
     width: 100%;
     height: 360px;
   }

@@ -20,7 +20,7 @@
           data: data.values,
           backgroundColor: '#6478FF',
           borderRadius: 4,
-          barThickness: 20
+          barThickness: 30
         }]
       },
       options: {
