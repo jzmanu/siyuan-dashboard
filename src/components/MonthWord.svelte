@@ -14,7 +14,7 @@
     if (chart) {
       chart.data.labels = data.labels;
       chart.data.datasets[0].data = data.values;
-      chart.update('none');
+      chart.update();
     }
   }
 
@@ -57,6 +57,10 @@
               minRotation: 0
             }
           }
+        },
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
         }
       }
     });
