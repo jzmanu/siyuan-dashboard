@@ -296,7 +296,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    padding-right: 20px;
+    padding-right: 50px;
     height: 40px;
     margin-bottom: 20px;
     align-items: center;
