@@ -19,51 +19,51 @@
   }
 
   onMount(() => {
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: data.labels,
-          datasets: [{
-            label: '字数统计',
-            data: data.values,
-            backgroundColor: '#6478FF',
-            borderRadius: 4,
-            barThickness: 30
-          }]
+    chart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: '字数统计',
+          data: data.values,
+          backgroundColor: '#6478FF',
+          borderRadius: 4,
+          barThickness: 30
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#a1a1b2'
             }
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                color: '#a1a1b2'
-              }
+          x: {
+            grid: {
+              display: false
             },
-            x: {
-              grid: {
-                display: false
-              },
-              ticks: {
-                color: '#a1a1b2',
-                font: {
-                  family: 'Arial',
-                  size: 12
-                }
-              }
+            ticks: {
+              color: '#a1a1b2',
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0
             }
           }
         }
-      });
-    }
+      }
+    });
 
     return () => {
       if (chart) {
@@ -77,9 +77,19 @@
   });
 </script>
 
-<canvas bind:this={canvas}></canvas>
+<div class="chart-container">
+  <canvas bind:this={canvas}></canvas>
+</div>
 
 <style>
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
   canvas {
     width: 100% !important;
     height: 100% !important;
