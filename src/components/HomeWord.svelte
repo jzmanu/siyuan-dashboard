@@ -202,6 +202,7 @@
     display: flex;
     flex-direction: column;
     height: 360px;
+    text-align: center;
   }
   
   :global(html[data-theme-mode="dark"]) .section-title {
@@ -209,8 +210,8 @@
     font-size: 20px;
     font-weight: 500;
     height: 20px;
-    padding-left: 20px;
-    margin-top: 10px;
+    padding-left: 40px;
+    margin-top: 15px;
     margin-bottom: 20px;
   }
 
@@ -219,8 +220,8 @@
     font-size: 20px;
     font-weight: 500;
     height: 20px;
-    padding-left: 20px;
-    margin-top: 10px;
+    padding-left: 40px;
+    margin-top: 15px;
     margin-bottom: 20px;
   }
   
