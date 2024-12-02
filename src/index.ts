@@ -14,6 +14,7 @@ import "@/index.scss";
 const STORAGE_NAME = "menu-config";
 
 import Dashboard from './pages/Dashboard.svelte';
+import { Logger } from "./utils/mlog";
 
 export default class DashboardPlugin extends Plugin implements IPluginDockTab{
     position: "LeftTop" | "LeftBottom" | "RightTop" | "RightBottom" | "BottomLeft" | "BottomRight";
@@ -28,8 +29,8 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
     private isMobile: boolean;
 
     async onload() {
+        Logger.info("DashboardPlugin load.");
         this.data[STORAGE_NAME] = { readonlyText: "Readonly" };
-        console.log("loading plugin-sample", this.i18n);
         const frontEnd = getFrontend();
         this.isMobile = frontEnd === "mobile" || frontEnd === "browser-mobile";
         this.addTopBar({
@@ -56,18 +57,11 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
     }
 
     onLayoutReady() {
-        // this.loadData(STORAGE_NAME);
-        console.log(`frontend: ${getFrontend()}; backend: ${getBackend()}`);
+        Logger.debug(`onLayoutReady > frontend: ${getFrontend()}; backend: ${getBackend()}`);
     }
 
     async onunload() {
-        console.log(this.i18n.byePlugin);
-        showMessage("Goodbye SiYuan Plugin");
-        console.log("onunload");
-    }
-
-    uninstall() {
-        console.log("uninstall");
+        showMessage(this.i18n.uninstallPlugin);
     }
 
     async updateCards(options: ICardData) {
