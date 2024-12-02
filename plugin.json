@@ -8,28 +8,25 @@
     "windows",
     "linux",
     "darwin",
-    "docker",
-    "ios",
-    "android"
+    "docker"
   ],
   "frontends": [
     "desktop",
-    "mobile",
     "browser-desktop",
     "browser-mobile",
     "desktop-window"
   ],
   "displayName": {
     "en_US": "siyuan-dashboard",
-    "zh_CN": "思源仪表盘"
+    "zh_CN": "仪表盘"
   },
   "description": {
     "en_US": "SiYuan dashboard, the best SiYuan data statistics plugin.",
     "zh_CN": "思源仪表盘，最好的思源数据统计插件。"
   },
   "readme": {
-    "en_US": "README.md",
-    "zh_CN": "README_zh_CN.md"
+    "en_US": "README_zh_CN.md",
+    "zh_CN": "README.md"
   },
   "funding": {
     "custom": [
