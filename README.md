@@ -1,4 +1,4 @@
-# siyuan-dashboard
+# 思源仪表盘
 
 [英文版README](./README_zh_CN.md)
 
@@ -43,11 +43,11 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 ## 微信
 
-<img src="wechat.png" style="width: 280px; height: 406px;">
+<img src="wechat.png" style="width: 280px; height: 406px; margin-left: 0;">
 
 ## 支付宝
 
-<img src="alipay.jpg" style="width: 270px; height: 381px;">
+<img src="alipay.jpg" style="width: 270px; height: 381px; margin-left: 0;">
 
 ## Github Star
 
