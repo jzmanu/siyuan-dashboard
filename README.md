@@ -2,7 +2,7 @@
 
 [英文版README](./README_zh_CN.md)
 
-![siyuan-dashboard](icon.png)
+![siyuan-dashboard](logo.png)
 
 siyuan-dashboard，可翻译为“思源仪表盘”，该插件是一款思源笔记插件，主要用来展示思源笔记的统计数据，直接看看效果图：
 

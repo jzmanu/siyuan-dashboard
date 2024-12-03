@@ -2,6 +2,8 @@
 
 [Chinese version README(./README.md)
 
+![siyuan-dashboard](logo.png)
+
 siyuan-dashboard, which can be translated as "Siyuan Dashboard", is a Siyuan Notes plugin, mainly used to display the statistics of Siyuan Notes. Take a look at the effect diagram:
 
 ![siyuan-dashboard](preview.png)
