@@ -54,6 +54,10 @@ If you approve of this project, please buy me a cup of coffee. This will [encour
 
 Give a [Github Star](https://github.com/jzmanu/siyuan-dashboard) to support the author~
 
+# Contact me
+
+![WeChat public account](gxz.png)
+
 # Acknowledgements
 
 - [Ancient Poetry One Word API](http://gushi.ci).

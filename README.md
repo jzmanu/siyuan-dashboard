@@ -2,6 +2,8 @@
 
 [英文版README](./README_zh_CN.md)
 
+![siyuan-dashboard](icon.png)
+
 siyuan-dashboard，可翻译为“思源仪表盘”，该插件是一款思源笔记插件，主要用来展示思源笔记的统计数据，直接看看效果图：
 
 ![siyuan-dashboard](preview.png)
@@ -50,6 +52,10 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 ## Github Star
 
 给个[Github Star](https://github.com/jzmanu/siyuan-dashboard)支持作者吧~
+
+# 联系我
+
+![微信公众号](gxz.png)
 
 # 鸣谢
 
