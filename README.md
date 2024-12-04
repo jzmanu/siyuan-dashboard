@@ -32,6 +32,10 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 - 初始版本，支持基本的统计功能。
 
+## v1.0.1
+
+- 修复README中图片在插件商店未显示异常。
+
 # 问题反馈
 
 如果在使用过程中遇到问题，欢迎在 Github 上提 [issues](https://github.com/jzmanu/siyuan-dashboard/issues)。
