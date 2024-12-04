@@ -1,4 +1,9 @@
 ---
 helloPlugin: 仪表盘
 uninstallPlugin: 卸载思源仪表盘
+about: 关于
+version: 版本
+github: Github
+author: 作者
+link: 链接
 

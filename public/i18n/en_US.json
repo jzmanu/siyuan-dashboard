@@ -1,4 +1,9 @@
 {
     "helloPlugin": "Dashboard",
-    "uninstallPlugin" : "Uninstall SiYuan Dashboard"
+    "uninstallPlugin" : "Uninstall SiYuan Dashboard",
+    "about": "About",
+    "version": "Version",
+    "github": "Github", 
+    "author": "Author",
+    "link": "link"
 }

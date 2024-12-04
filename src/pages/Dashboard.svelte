@@ -5,6 +5,8 @@
   import { getMonthWordCountData, getWeekWordCountData, getWordCountALl, getWordCountByYearData } from '../core/word-count';
   import { getTagCountTotal } from '../core/tag-counts';
   import { Logger } from '@/utils/mlog';
+  import { Plugin } from "siyuan";
+  export let plugin: Plugin; 
   
   let stats = {
     days: 0,
@@ -80,4 +82,8 @@
   };
 </script>
 
-<DashboardHome {stats} data={wordStatisticsData} />
+<DashboardHome 
+  plugin={plugin}
+  stats={stats} 
+  data={wordStatisticsData} 
+/>

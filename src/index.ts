@@ -43,7 +43,10 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
                 const container = document.createElement('div');
                 container.id = 'dashboard-container';
                 new Dashboard({
-                    target: container
+                    target: container,
+                    props: {
+                        plugin: this
+                    }
                 });
                 menu.addItem({ element: container });
                 const targetDiv = document.querySelector('.b3-menu__item') as HTMLElement;

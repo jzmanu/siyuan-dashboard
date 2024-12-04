@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Plugin } from "siyuan";
+  export let plugin: Plugin; 
   export let show = false;
 
   const version = "1.0.0";
@@ -8,11 +10,11 @@
 
 {#if show}
   <div class="popup-container">
-    <h2>关于</h2>
+    <h2>{plugin.i18n.about}</h2>
     <div class="popup-content">
-      <p class="label">版本：{version}</p>
-      <p class="label">Gtihub：<a href={github} target="_blank">链接</a></p>
-      <p class="label">作者：{author}</p>
+      <p class="label">{plugin.i18n.version}：{version}</p>
+      <p class="label">{plugin.i18n.github}：<a href={github} target="_blank">{plugin.i18n.link}</a></p>
+      <p class="label">{plugin.i18n.author}：{author}</p>
     </div>
   </div>
 {/if}
