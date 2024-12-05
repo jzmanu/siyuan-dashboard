@@ -36,6 +36,12 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 - 修复README中图片在插件商店未显示异常。
 
+## v1.1.0
+
+- 多语言适配支持英文。
+- 调整图标右边界内边距。
+- 调整图表年月日文字之间的间距。
+
 # 问题反馈
 
 如果在使用过程中遇到问题，欢迎在 Github 上提 [issues](https://github.com/jzmanu/siyuan-dashboard/issues)。
