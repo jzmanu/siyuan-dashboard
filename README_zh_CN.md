@@ -1,6 +1,6 @@
 # siyuan-dashboard
 
-[Chinese version README(./README.md)
+[Chinese version README](./README.md)
 
 ![siyuan-dashboard](logo.png)
 
