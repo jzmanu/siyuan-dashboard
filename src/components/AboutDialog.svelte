@@ -3,7 +3,7 @@
   export let plugin: Plugin; 
   export let show = false;
 
-  const version = "1.0.0";
+  const version = "1.1.0";
   const github = "https://github.com/jzmanu/siyuan-dashboard";
   const author = "jzman";
 </script>
