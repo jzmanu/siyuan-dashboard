@@ -49,7 +49,7 @@
 <div class="content">
   <div class="title-container">
     <div class="flex-spacer"></div>
-    <h2 class="section-title">仪表盘</h2>
+    <h2 class="section-title">{plugin.i18n.dashboard}</h2>
     <div class="flex-spacer"></div>
     <div class="help-button-container">
       <button class="help-button" on:click={handleHelpClick}>
@@ -66,24 +66,27 @@
     <div class="stat-card" style="background: linear-gradient(45deg, #7484f0, #6d46eb)">
       <div class="stat-value">{stats.days}</div>
       <div class="stat-label">
-        <h4>天数({stats.daysPercent}%)</h4>
+        <h4>{plugin.i18n.days} ({stats.daysPercent}%)</h4>
       </div>
     </div>
     <div class="stat-card" style="background: linear-gradient(45deg, #FF6B6B, #FF8E8E)">
       <div class="stat-value">{stats.documents}</div>
-      <div class="stat-label"><h4>笔记</h4></div>
+      <div class="stat-label"><h4>{plugin.i18n.notes}</h4></div>
     </div>
     <div class="stat-card" style="background: linear-gradient(45deg, #FFB86C, #FFD93D)">
       <div class="stat-value">{stats.words}</div>
-      <div class="stat-label"><h4>字数</h4></div>
+      <div class="stat-label"><h4>{plugin.i18n.words}</h4></div>
     </div>
     <div class="stat-card" style="background: linear-gradient(45deg, #4CAF50, #8BC34A)">
       <div class="stat-value">{stats.tags}</div>
-      <div class="stat-label"><h4>标签</h4></div>
+      <div class="stat-label"><h4>{plugin.i18n.tags}</h4></div>
     </div>
   </div>
 
-  <HomeWord {data} />
+  <HomeWord 
+    plugin={plugin} 
+    data={data} 
+  />
 
   <div class="footer-quote">
     {poem}

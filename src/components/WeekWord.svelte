@@ -1,9 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Chart from 'chart.js/auto';
-  
+  import { Plugin } from "siyuan";
+  export let plugin: Plugin; 
   export let data = {
-    labels: ['一', '二', '三', '四', '五', '六', '日'],
+    labels: [
+      plugin.i18n.mondays, 
+      plugin.i18n.tuesdays, 
+      plugin.i18n.wednesdays, 
+      plugin.i18n.thursdays, 
+      plugin.i18n.fridays, 
+      plugin.i18n.saturdays, 
+      plugin.i18n.sundays
+    ],
     values: [150, 180, 220, 190, 170, 250, 200]
   };
   
@@ -16,7 +25,7 @@
       data: {
         labels: data.labels,
         datasets: [{
-          label: '字数统计',
+          label: plugin.i18n.wordStats,
           data: data.values,
           backgroundColor: '#6478FF',
           borderRadius: 4,

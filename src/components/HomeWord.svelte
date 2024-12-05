@@ -2,7 +2,8 @@
     import YearWord from './YearWord.svelte';
     import MonthWord from './MonthWord.svelte';
     import WeekWord from './WeekWord.svelte';
-    
+    import { Plugin } from "siyuan";
+    export let plugin: Plugin; 
     export let data: {
       getYearData: (year: number) => Promise< {
         labels: string[];
@@ -17,9 +18,24 @@
         values: number[];
       }>;
     };
+
+    const monthNames = [
+        'Jan', 
+        'Feb', 
+        'Mar', 
+        'Apr', 
+        'May', 
+        'Jun',
+        'Jul', 
+        'Aug', 
+        'Sep', 
+        'Oct', 
+        'Nov', 
+        'Dec'
+    ];
     
-    let activeTab = '年';
-    const tabs = ['年', '月', '周'];
+    let activeTab = plugin.i18n.year;
+    const tabs = [plugin.i18n.year, plugin.i18n.month, plugin.i18n.week];
     
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
@@ -63,10 +79,10 @@
       }
     }
     
-    $: statsTitle = activeTab === '年' ? '年度总字数' : 
-                    activeTab === '月' ? '月度总字数' : '周总字数';
-    $: avgTitle = activeTab === '年' ? '月平均字数' : 
-                  activeTab === '月' ? '日平均字数' : '日均字数';
+    $: statsTitle = activeTab === plugin.i18n.year ? plugin.i18n.yearTotalWords : 
+                    activeTab === plugin.i18n.month ? plugin.i18n.monthTotalWords : plugin.i18n.weekTotalWords;
+    $: avgTitle = activeTab === plugin.i18n.year ? plugin.i18n.yearAvgWords : 
+                  activeTab === plugin.i18n.month ? plugin.i18n.monthAvgWords : plugin.i18n.weekAvgWords;
     
     let yearData = {
       labels: [],
@@ -101,25 +117,55 @@
       });
     }
     
-    $: totalStats = activeTab === '年' ? 
+    $: totalStats = activeTab === plugin.i18n.year ? 
       yearData.values.reduce((a, b) => a + b, 0) : 
-      activeTab === '月' ?
+      activeTab === plugin.i18n.month ?
       monthData.values.reduce((a, b) => a + b, 0) :
       weekData.values.reduce((a, b) => a + b, 0);
       
-    $: avgStats = activeTab === '年' ? 
+    $: avgStats = activeTab === plugin.i18n.year ? 
       Math.round(totalStats / 12) : 
-      activeTab === '月' ?
+      activeTab === plugin.i18n.month ?
       Math.round(totalStats / monthData.values.length) :
       Math.round(totalStats / 7);
-    
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.getFullYear()}年${currentDate.getMonth() + 1}月${currentDate.getDate()}日`;
+
+    /**
+     * format year for different language
+     * @param year year
+     */
+    function formatYear(year: number){
+      if(plugin.i18n.year === 'Year'){
+        return `${year}`;
+      }
+      return `${year} ${plugin.i18n.year}`;
+    }
+    /**
+     * format year and month for different language
+     * @param year year
+     * @param month month
+     */
+    function formatYearMonth(year: number, month: number) {
+      if (plugin.i18n.year === 'Year') {
+        return `${monthNames[month - 1]} ${year}`;
+      }
+      return `${year} ${plugin.i18n.year} ${month} ${plugin.i18n.month}`;
+    }
+
+    /**
+     * format year, month and day for different language
+     */
+    function formatYearMonthDay() {
+      const currentDate = new Date();
+      if (plugin.i18n.year === 'Year') {
+        return `${monthNames[currentDate.getMonth()]} ${currentDate.getDay()+1}, ${currentDate.getFullYear()}`;
+      }
+      return `${currentDate.getFullYear()} ${plugin.i18n.year} ${currentDate.getMonth() + 1} ${plugin.i18n.month} ${currentDate.getDate()} ${plugin.i18n.day}`;
+    }
 </script>
 
 <div class="analytics-container">
   <div class="left-section">
-    <h3 class="section-title">字数统计</h3>
+    <h3 class="section-title">{plugin.i18n.wordStats}</h3>
     <div class="stats-section">
       <div class="general-stats">
         <div class="stat-box">
@@ -142,21 +188,25 @@
   <div class="chart-section">
     <div class="tab-controls">
       <div class="year-selector">
-        {#if activeTab === '年'}
-          <span class="year-text">{year}年</span>
+        {#if activeTab === plugin.i18n.year}
+          <span class="year-text">
+            {formatYear(year)}
+          </span>
           <div class="year-controls">
             <button class="year-btn" on:click={prevYear}>&lt;</button>
             <button class="year-btn" on:click={nextYear} disabled={year >= currentYear}>&gt;</button>
           </div>
-        {:else if activeTab === '月'}
-          <span class="year-text">{year}年{month}月</span>
+        {:else if activeTab === plugin.i18n.month}
+          <span class="year-text">
+            {formatYearMonth(year, month)}
+          </span>
           <div class="year-controls">
             <button class="year-btn" on:click={prevMonth}>&lt;</button>
             <button class="year-btn" on:click={nextMonth} 
               disabled={year === currentYear && month >= currentMonth}>&gt;</button>
           </div>
         {:else}
-          <span class="year-text">{formattedDate}</span>
+          <span class="year-text">{formatYearMonthDay()}</span>
           <div class="year-controls">
             <button class="year-btn disabled" disabled>&lt;</button>
             <button class="year-btn disabled" disabled>&gt;</button>
@@ -175,12 +225,21 @@
     </div>
     
     <div class="chart">
-      {#if activeTab === '年'}
-        <YearWord data={yearData} />
-      {:else if activeTab === '月'}
-        <MonthWord data={monthData} />
+      {#if activeTab === plugin.i18n.year}
+        <YearWord 
+          plugin={plugin} 
+          data={yearData} 
+        />
+        {:else if activeTab === plugin.i18n.month}
+        <MonthWord 
+          plugin={plugin} 
+          data={monthData} 
+        />
       {:else}
-        <WeekWord data={weekData} />
+        <WeekWord 
+          plugin={plugin} 
+          data={weekData} 
+        />
       {/if}
     </div>
   </div>
@@ -334,6 +393,7 @@
     height: 300px;
     position: relative;
     width: 100%;
+    padding-right: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

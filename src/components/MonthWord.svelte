@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount, afterUpdate } from 'svelte';
   import Chart from 'chart.js/auto';
-  
+  import { Plugin } from "siyuan";
+  export let plugin: Plugin; 
   export let data: {
     labels: string[];
     values: number[];
@@ -24,7 +25,7 @@
       data: {
         labels: data.labels,
         datasets: [{
-          label: '字数统计',
+          label: plugin.i18n.wordStats,
           data: data.values,
           backgroundColor: '#6478FF',
           borderRadius: 4,

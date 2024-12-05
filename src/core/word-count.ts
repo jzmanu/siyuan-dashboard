@@ -1,6 +1,7 @@
 import { sql } from '../api';
 import { Logger } from '../utils/mlog';
 import { format } from 'date-fns';
+import { Plugin } from "siyuan";
 /**
  * get word count all.
  * @returns Promise<number>
@@ -44,7 +45,7 @@ export async function getWordCountByYear(year: number): Promise<number> {
  * @returns Promise<{labels: string[], values: number[]}>
  * @author jzman
  */
-export async function getWordCountByYearData(year: number): Promise<{labels: string[], values: number[]}> {
+export async function getWordCountByYearData(year: number, plugin: Plugin): Promise<{labels: string[], values: number[]}> {
     try {
         const values: number[] = [];
         for (let month = 1; month <= 12; month++) {
@@ -52,13 +53,39 @@ export async function getWordCountByYearData(year: number): Promise<{labels: str
             values.push(count);
         }
         return {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            labels: [
+                plugin.i18n.January, 
+                plugin.i18n.February, 
+                plugin.i18n.March, 
+                plugin.i18n.April, 
+                plugin.i18n.May, 
+                plugin.i18n.June, 
+                plugin.i18n.July, 
+                plugin.i18n.August, 
+                plugin.i18n.September, 
+                plugin.i18n.October, 
+                plugin.i18n.November, 
+                plugin.i18n.December
+            ],
             values: values
         };
     } catch (err) {
         Logger.error('getWordCountByYearData failed:'+ err);
         return {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            labels: [
+                plugin.i18n.January, 
+                plugin.i18n.February, 
+                plugin.i18n.March, 
+                plugin.i18n.April, 
+                plugin.i18n.May, 
+                plugin.i18n.June, 
+                plugin.i18n.July, 
+                plugin.i18n.August, 
+                plugin.i18n.September, 
+                plugin.i18n.October, 
+                plugin.i18n.November, 
+                plugin.i18n.December
+            ],
             values: new Array(12).fill(0)
         };
     }
@@ -116,12 +143,12 @@ export async function getMonthWordCountData(year: number, month: number): Promis
  * get week word count data.
  * @returns Promise<{labels: string[], values: number[]}>
  */
-export async function getWeekWordCountData(): Promise<{labels: string[], values: number[]}> {
+export async function getWeekWordCountData(plugin: Plugin): Promise<{labels: string[], values: number[]}> {
     Logger.debug('getWeekWordCountData');
     try {
         const today = new Date();
         const values = new Array(7).fill(0);
-        const labels = ['一', '二', '三', '四', '五', '六', '日'];
+        const labels = [plugin.i18n.mondays, plugin.i18n.tuesdays, plugin.i18n.wednesdays, plugin.i18n.thursdays, plugin.i18n.fridays, plugin.i18n.saturdays, plugin.i18n.sundays];
         
         const monday = new Date(today);
         monday.setDate(today.getDate() - (today.getDay() || 7) + 1);
@@ -142,7 +169,15 @@ export async function getWeekWordCountData(): Promise<{labels: string[], values:
     } catch (err) {
         Logger.error('getWeekWordCountData failed:'+ err);
         return {
-            labels: ['一', '二', '三', '四', '五', '六', '日'],
+            labels: [
+                plugin.i18n.mondays, 
+                plugin.i18n.tuesdays, 
+                plugin.i18n.wednesdays, 
+                plugin.i18n.thursdays, 
+                plugin.i18n.fridays, 
+                plugin.i18n.saturdays, 
+                plugin.i18n.sundays
+            ],
             values: new Array(7).fill(0)
         };
     }

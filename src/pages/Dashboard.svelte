@@ -40,11 +40,24 @@
 
   async function getYearData(year: number) {
     try {
-      return await getWordCountByYearData(year);
+      return await getWordCountByYearData(year, plugin);
     } catch (err) {
       Logger.error('get year data error'+ err);
       return {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        labels: [
+          plugin.i18n.January, 
+          plugin.i18n.February, 
+          plugin.i18n.March, 
+          plugin.i18n.April, 
+          plugin.i18n.May, 
+          plugin.i18n.June, 
+          plugin.i18n.July, 
+          plugin.i18n.August, 
+          plugin.i18n.September, 
+          plugin.i18n.October, 
+          plugin.i18n.November, 
+          plugin.i18n.December
+        ],
         values: new Array(12).fill(0)
       };
     }
@@ -65,11 +78,19 @@
 
   async function getWeekData() {
     try {
-      return await getWeekWordCountData();
+      return await getWeekWordCountData(plugin);
     } catch (err) {
       Logger.error('getWeekData failed:'+ err);
       return {
-            labels: ['一', '二', '三', '四', '五', '六', '日'],
+            labels: [
+              plugin.i18n.mondays, 
+              plugin.i18n.tuesdays, 
+              plugin.i18n.wednesdays, 
+              plugin.i18n.thursdays, 
+              plugin.i18n.fridays, 
+              plugin.i18n.saturdays, 
+              plugin.i18n.sundays
+            ],
             values: new Array(7).fill(0)
         };
     }
