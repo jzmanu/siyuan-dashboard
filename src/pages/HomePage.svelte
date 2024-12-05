@@ -18,8 +18,19 @@
   
   onMount(async () => {
     try {
-      const response = await fetch('https://v1.jinrishici.com/all.txt');
-      poem = await response.text();
+      if (plugin.i18n.language === 'zh-CN') {
+        const response = await fetch('https://v1.jinrishici.com/all.txt');
+        poem = await response.text();
+      } else {
+        let currentDate = new Date();
+        let randomYear = currentDate.getFullYear() - Math.floor(Math.random() * 3);
+        let randomMonth = Math.floor(Math.random() * 12) + 1;
+        let randomDay = Math.floor(Math.random() * 28) + 1;
+        let formattedDate = `${randomYear}-${randomMonth.toString().padStart(2, '0')}-${randomDay.toString().padStart(2, '0')}`;
+        const response = await fetch(`https://open.iciba.com/dsapi?date=${formattedDate}`);
+        const data = await response.json();
+        poem = data.content;
+      }
     } catch (error) {
       Logger.debug('getPoem failed:'+ error);
     }
