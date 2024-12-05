@@ -46,6 +46,10 @@ Select the "Dashboard" icon in the top bar, and the statistics will be displayed
 - Adjust the right margin of the icon.
 - Adjust the spacing between the year, month, and day text in the chart.
 
+## v1.1.1
+
+- Fixed the problem that the image in README is not displayed in the plugin store.
+
 # Feedback
 
 If you encounter any problems during use, please raise [issues](https://github.com/jzmanu/siyuan-dashboard/issues) on Github.
