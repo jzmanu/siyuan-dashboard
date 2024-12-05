@@ -46,11 +46,11 @@ If you approve of this project, please buy me a cup of coffee. This will [encour
 
 ## WeChat
 
-<img src="wechat.png" style="width: 280px; height: 406px;">
+<img src="wechat.png" style="width: 280px; height: 406px; margin-left: 0;">
 
 ## Alipay
 
-<img src="alipay.jpg" style="width: 270px; height: 381px;">
+<img src="alipay.jpg" style="width: 270px; height: 381px; margin-left: 0;">
 
 ## Github Star
 
