@@ -2,7 +2,7 @@
   "name": "siyuan-dashboard",
   "author": "jzman",
   "url": "https://github.com/jzmanu/siyuan-dashboard",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "minAppVersion": "3.1.1",
   "backends": [
     "windows",
