@@ -18,7 +18,7 @@
   
   onMount(async () => {
     try {
-      if (plugin.i18n.language === 'zh-CN') {
+      if (plugin.i18n.year !== 'Year') {
         const response = await fetch('https://v1.jinrishici.com/all.txt');
         poem = await response.text();
       } else {
