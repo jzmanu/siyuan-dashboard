@@ -249,7 +249,7 @@
   .analytics-container {
     background: var(--b3-theme-background);
     border-radius: 12px;
-    padding: 20px;
+    padding: 20px 40px 20px 20px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: 140px 1fr;
