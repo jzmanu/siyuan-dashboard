@@ -34,7 +34,7 @@
         'Dec'
     ];
     
-    let activeTab = plugin.i18n.year;
+    let activeTab = plugin.i18n.week;
     const tabs = [plugin.i18n.year, plugin.i18n.month, plugin.i18n.week];
     
     const currentYear = new Date().getFullYear();

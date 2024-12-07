@@ -19,6 +19,12 @@
   let canvas: HTMLCanvasElement;
   let chart: Chart;
 
+  $: if (data && chart) {
+    chart.data.labels = data.labels;
+    chart.data.datasets[0].data = data.values;
+    chart.update();
+  }
+
   onMount(() => {
     chart = new Chart(canvas, {
       type: 'bar',
