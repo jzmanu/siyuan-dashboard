@@ -2,11 +2,11 @@
 
 [英文版README](./README_zh_CN.md)
 
-![siyuan-dashboard](logo.png)
+![siyuan-dashboard](https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCEbf68617a53a2ef57279ea50cf57555f0/133974)
 
 siyuan-dashboard，可翻译为“思源仪表盘”，该插件是一款思源笔记插件，主要用来展示思源笔记的统计数据，直接看看效果图：
 
-![siyuan-dashboard](preview.png)
+![siyuan-dashboard](https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCEdb72d9933a58b71d479430617060c288/133976)
 
 
 # 功能介绍
@@ -17,6 +17,7 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 - 支持年、月、周总字数和平均字数统计。
 - 支持年、月切换查看历史数据。
 - 适配明亮、黑暗模式。
+- 多语言适配支持英文。
 
 > 目前主要适配了桌面端，移动端暂时没有适配，如有需要后续会适配。
 
@@ -24,7 +25,7 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 在顶栏选择图标「仪表盘」，右上角会显示统计数据，下面演示一下：
 
-![siyuan-icon-tools](dashboard-usage.gif)
+![siyuan-icon-tools](https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCE6f78f3c6dee8d7725e7c3d8def3706c7/133978)
 
 # 版本记录
 
@@ -57,11 +58,11 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 ## 微信
 
-<img src="wechat.png" style="width: 280px; height: 406px; margin-left: 0;">
+<img src="https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCE49bdc9bcd1f4fc395b7a20d81e68ebd2/133982" style="width: 280px; height: 406px; margin-left: 0;">
 
 ## 支付宝
 
-<img src="alipay.jpg" style="width: 270px; height: 381px; margin-left: 0;">
+<img src="https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCEbe0036b9bcac2fa1f69cb05a344ae761/133980" style="width: 270px; height: 381px; margin-left: 0;">
 
 ## Github Star
 
@@ -69,12 +70,10 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 
 # 联系我
 
-![微信公众号](gxz.png)
+![微信公众号](https://note.youdao.com/yws/public/resource/d5f1f3fc2a47bb1ce1b146d3a817ab5b/xmlnote/WEBRESOURCE3793a17b5406c3b7989e259d8a59f4f2/133984)
 
 # 鸣谢
 
 - [古诗词一言API](http://gushi.ci)。
 - [思源笔记](https://b3log.org/siyuan)。
-
-
 

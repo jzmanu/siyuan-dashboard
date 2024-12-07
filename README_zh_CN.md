@@ -13,14 +13,12 @@ siyuan-dashboard, which can be translated as "Siyuan Dashboard", is a Siyuan Not
 Siyuan-dashboard is a data statistics plugin, and currently supports the following functions:
 
 - Supports statistics of days, notes, words, and tags.
-
 - Supports percentage display of usage days (actual usage days/total days).
-
 - Supports total word count and average word count statistics for years, months, and weeks.
-
 - Supports switching between years and months to view historical data.
-
 - Adapts to light and dark modes.
+- Multi-language adaptation supports English.
+
 
 > Currently, it is mainly adapted to the desktop, and the mobile terminal is not adapted for the time being. If necessary, it will be adapted later.
 
