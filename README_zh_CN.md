@@ -2,11 +2,11 @@
 
 [Chinese version README](./README.md)
 
-![siyuan-dashboard](logo.png)
+![siyuan-dashboard](logo-english.png)
 
 siyuan-dashboard, which can be translated as "Siyuan Dashboard", is a Siyuan Notes plugin, mainly used to display the statistics of Siyuan Notes. Take a look at the effect diagram:
 
-![siyuan-dashboard](preview.png)
+![siyuan-dashboard](preview-english.png)
 
 # Function introduction
 
@@ -26,7 +26,7 @@ Siyuan-dashboard is a data statistics plugin, and currently supports the followi
 
 Select the "Dashboard" icon in the top bar, and the statistics will be displayed in the upper right corner. Here is a demonstration:
 
-![siyuan-icon-tools](dashboard-usage.gif)
+![siyuan-icon-tools](dashboard-usage-english.gif)
 
 # Version History
 
