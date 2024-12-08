@@ -39,5 +39,8 @@
     "September": "Sep",
     "October": "Oct",
     "November": "Nov",
-    "December": "Dec"
+    "December": "Dec",
+    "notebook": "Notebook",
+    "allSelected": "All",
+    "loading": "Loading..."
 }

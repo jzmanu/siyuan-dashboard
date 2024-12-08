@@ -4,6 +4,8 @@
   import PopupDialog from '../components/AboutDialog.svelte';
   import { Logger } from '../utils/mlog';
   import { Plugin } from "siyuan";
+  import NotebookSelection from '../components/NotebookSelection.svelte';
+  
   export let plugin: Plugin; 
   export let stats: {
     days: number;
@@ -15,25 +17,52 @@
   export let data: any;
   
   let poem = '';
-  
-  onMount(async () => {
-    try {
-      if (plugin.i18n.year !== 'Year') {
-        const response = await fetch('https://v1.jinrishici.com/all.txt');
-        poem = await response.text();
-      } else {
-        let currentDate = new Date();
-        let randomYear = currentDate.getFullYear() - Math.floor(Math.random() * 3);
-        let randomMonth = Math.floor(Math.random() * 12) + 1;
-        let randomDay = Math.floor(Math.random() * 28) + 1;
-        let formattedDate = `${randomYear}-${randomMonth.toString().padStart(2, '0')}-${randomDay.toString().padStart(2, '0')}`;
-        const response = await fetch(`https://open.iciba.com/dsapi?date=${formattedDate}`);
-        const data = await response.json();
-        poem = data.content;
-      }
-    } catch (error) {
-      Logger.debug('getPoem failed:'+ error);
+
+  let showNotebookSelection = false;
+  let notebookButtonRef: HTMLElement;
+
+  function toggleNotebookSelection(event: MouseEvent) {
+    event.stopPropagation();
+    showNotebookSelection = !showNotebookSelection;
+  }
+
+  function handleClickOutside(event: MouseEvent) {
+    if (
+      showNotebookSelection && 
+      notebookButtonRef && 
+      !notebookButtonRef.contains(event.target as Node)
+    ) {
+      showNotebookSelection = false;
     }
+  }
+
+  onMount(() => {
+    const initAsync = async () => {
+      try {
+        if (plugin.i18n.year !== 'Year') {
+          const response = await fetch('https://v1.jinrishici.com/all.txt');
+          poem = await response.text();
+        } else {
+          let currentDate = new Date();
+          let randomYear = currentDate.getFullYear() - Math.floor(Math.random() * 3);
+          let randomMonth = Math.floor(Math.random() * 12) + 1;
+          let randomDay = Math.floor(Math.random() * 28) + 1;
+          let formattedDate = `${randomYear}-${randomMonth.toString().padStart(2, '0')}-${randomDay.toString().padStart(2, '0')}`;
+          const response = await fetch(`https://open.iciba.com/dsapi?date=${formattedDate}`);
+          const data = await response.json();
+          poem = data.content;
+        }
+      } catch (error) {
+        Logger.debug('getPoem failed:'+ error);
+      }
+    };
+    
+    initAsync();
+    document.addEventListener('click', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
   });
 
   let showPopup = false;
@@ -41,24 +70,27 @@
   function handleHelpClick() {
     showPopup = !showPopup;
   }
-
-  function handleClickOutside(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.help-button') && !target.closest('.popup-container')) {
-      showPopup = false;
-    }
-  }
-
-  onMount(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  });
 </script>
 
 <div class="content">
   <div class="title-container">
+    <div class="notebook-selector">
+      <button 
+        class="notebook-select-btn" 
+        class:active={showNotebookSelection}
+        on:click={toggleNotebookSelection}
+        bind:this={notebookButtonRef}
+      >
+        <span>📔</span>
+        <span>{plugin.i18n.notebook}</span>
+        <span class="icon">▼</span>
+      </button>
+      {#if showNotebookSelection}
+        <div class="notebook-selection-popup">
+          <NotebookSelection {plugin} />
+        </div>
+      {/if}
+    </div>
     <div class="flex-spacer"></div>
     <h2 class="section-title">{plugin.i18n.dashboard}</h2>
     <div class="flex-spacer"></div>
@@ -108,6 +140,7 @@
     padding: 2rem;
     flex: 1;
     overflow-y: auto;
+    position: relative;
   }
 
   .title-container {
@@ -217,5 +250,69 @@
 
   :global(html[data-theme-mode="light"]) .iconAbout {
     fill: #555555;
+  }
+
+  .notebook-selector {
+    position: relative;
+    margin-left: 0;
+  }
+
+  .notebook-select-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    padding-left: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  :global(html[data-theme-mode="dark"]) .notebook-select-btn {
+    color: #a1a1b2;
+  }
+
+  :global(html[data-theme-mode="light"]) .notebook-select-btn {
+    color: #555555;
+  }
+
+  .notebook-select-btn:hover {
+    background: var(--b3-theme-background-light);
+  }
+
+  .notebook-select-btn .icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .notebook-select-btn.active .icon {
+    transform: rotate(180deg);
+  }
+
+  .notebook-selection-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 24px;
+    border-radius: 8px;
+    min-width: 200px;
+    z-index: 9999;
+    overflow: hidden;
+    animation: slideDown 0.2s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style> 
