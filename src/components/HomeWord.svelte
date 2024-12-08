@@ -2,8 +2,8 @@
     import YearWord from './YearWord.svelte';
     import MonthWord from './MonthWord.svelte';
     import WeekWord from './WeekWord.svelte';
-    import { Plugin } from "siyuan";
-    export let plugin: Plugin; 
+    import DashboardPlugin from '../index';
+    export let plugin: DashboardPlugin; 
     export let data: {
       getYearData: (year: number) => Promise< {
         labels: string[];

@@ -5,8 +5,8 @@
   import { getMonthWordCountData, getWeekWordCountData, getWordCountALl, getWordCountByYearData } from '../core/word-count';
   import { getTagCountTotal } from '../core/tag-counts';
   import { Logger } from '@/utils/mlog';
-  import { Plugin } from "siyuan";
-  export let plugin: Plugin; 
+  import DashboardPlugin from '../index';
+  export let plugin: DashboardPlugin; 
   
   let stats = {
     days: 0,

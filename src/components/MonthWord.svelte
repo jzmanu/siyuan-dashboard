@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount, afterUpdate } from 'svelte';
   import Chart from 'chart.js/auto';
-  import { Plugin } from "siyuan";
-  export let plugin: Plugin; 
+  import DashboardPlugin from '../index';
+  export let plugin: DashboardPlugin; 
   export let data: {
     labels: string[];
     values: number[];

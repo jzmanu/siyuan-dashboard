@@ -1,7 +1,7 @@
 <script lang="ts">
   import { VERSION } from "@/base/Config";
-  import { Plugin } from "siyuan";
-  export let plugin: Plugin; 
+  import DashboardPlugin from "../index";
+  export let plugin: DashboardPlugin; 
   export let show = false;
 
   const version = VERSION;

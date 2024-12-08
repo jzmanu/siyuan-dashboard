@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { Plugin } from "siyuan";
+  import DashboardPlugin from '../index';
   import { Logger } from "../utils/mlog";
   import { lsNotebooks } from "../api";
   import { NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY, VERSION } from "../base/Config";
 
-  export let plugin: Plugin;
+  export let plugin: DashboardPlugin;
 
   interface Notebook {
     id: string;
