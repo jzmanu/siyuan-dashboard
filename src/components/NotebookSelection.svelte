@@ -154,7 +154,7 @@
   .notebook-selection {
     all: unset; 
     padding: 8px 4px;
-    min-width: 160px;
+    min-width: 120px;
     background: var(--b3-theme-background);
     border-radius: 4px;
     box-shadow: var(--b3-dialog-shadow);
@@ -173,7 +173,7 @@
   }
 
   .notebooks-list {
-    max-height: 320px;
+    max-height: 240px;
     overflow-y: auto;
   }
 
