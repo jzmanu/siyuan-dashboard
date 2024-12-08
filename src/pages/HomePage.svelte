@@ -17,13 +17,19 @@
   export let data: any;
   
   let poem = '';
-
   let showNotebookSelection = false;
+  let showPopup = false;
   let notebookButtonRef: HTMLElement;
+  let helpButtonRef: HTMLElement;
 
   function toggleNotebookSelection(event: MouseEvent) {
     event.stopPropagation();
     showNotebookSelection = !showNotebookSelection;
+  }
+
+  function handleHelpClick(event: MouseEvent) {
+    event.stopPropagation();
+    showPopup = !showPopup;
   }
 
   function handleClickOutside(event: MouseEvent) {
@@ -33,6 +39,13 @@
       !notebookButtonRef.contains(event.target as Node)
     ) {
       showNotebookSelection = false;
+    }
+    if (
+      showPopup && 
+      helpButtonRef && 
+      !helpButtonRef.contains(event.target as Node)
+    ) {
+      showPopup = false;
     }
   }
 
@@ -64,12 +77,6 @@
       document.removeEventListener('click', handleClickOutside);
     };
   });
-
-  let showPopup = false;
-  
-  function handleHelpClick() {
-    showPopup = !showPopup;
-  }
 </script>
 
 <div class="content">
@@ -95,7 +102,7 @@
     <h2 class="section-title">{plugin.i18n.dashboard}</h2>
     <div class="flex-spacer"></div>
     <div class="help-button-container">
-      <button class="help-button" on:click={handleHelpClick}>
+      <button class="help-button" on:click={handleHelpClick} bind:this={helpButtonRef}>
         <svg class="iconAbout" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path d="M579.534628 100.4549c51.650357 2.830465 91.234911 47.115064 88.410586 98.9138-2.823302 51.794643-46.985104 91.488691-98.636484 88.658226-51.653427-2.830465-91.234911-47.117111-88.411609-98.9138C483.720422 137.315412 527.881201 97.622388 579.534628 100.4549zM346.952478 476.020554c0 0 181.473121-133.343961 240.850463-107.345844 59.374272 26.000164-20.908192 190.372815-26.762527 214.69271-5.853311 24.321942-43.48642 210.497155 80.285534 107.343797 0 0 61.884442-41.09393-26.762527 53.671387-88.647993 94.764294-200.708208 124.954897-214.087936 53.673433-10.087753-53.736878 42.903136-248.626567 53.520961-322.035484 3.467985-23.972994-26.76048 0-26.76048 0s-87.010703 61.262272-107.044991 26.838252C317.000306 497.375931 338.46006 480.553801 346.952478 476.020554z" fill=""></path></svg>
       </button>
       <PopupDialog 

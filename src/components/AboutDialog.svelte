@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { VERSION } from "@/base/Config";
   import { Plugin } from "siyuan";
   export let plugin: Plugin; 
   export let show = false;
 
-  const version = "1.1.1";
+  const version = VERSION;
   const github = "https://github.com/jzmanu/siyuan-dashboard";
   const author = "jzman";
 </script>
@@ -29,13 +30,14 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     padding: 8px;
     z-index: 1000;
+    margin-top: 24px;
   }
 
   .popup-content {
     display: flex;
     flex-direction: column;
     gap: 1px;
-    padding:10px 20px 10px;
+    padding: 10px 20px 10px;
   }
 
   :global(html[data-theme-mode="dark"]) h2,
@@ -53,5 +55,4 @@
   :global(html[data-theme-mode="light"]) h2 {
     color: #555555;
   }
-
 </style> 
