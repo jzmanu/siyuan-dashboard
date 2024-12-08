@@ -261,7 +261,7 @@
     background: transparent;
     border: none;
     padding: 8px 12px;
-    padding-left: 0;
+    padding-left: 10px;
     border-radius: 4px;
     display: flex;
     align-items: center;
