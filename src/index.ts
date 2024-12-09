@@ -11,7 +11,6 @@ import {
 } from "siyuan";
 import "@/index.scss";
 import { 
-    SIYUAN_USAGE_DOC_ID, 
     NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY
 } from "./base/Config";
 const STORAGE_NAME = "menu-config";

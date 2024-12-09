@@ -65,7 +65,7 @@
 
   async function getMonthData(year: number, month: number) {
     try {
-      return await getMonthWordCountData(year,month);
+      return await getMonthWordCountData(year,month, plugin);
     } catch (err) {
       Logger.error('getMonthData failed:'+ err);
         const daysInMonth = new Date(year, month, 0).getDate();

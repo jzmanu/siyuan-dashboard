@@ -27,10 +27,11 @@ export async function getWordCountALl(plugin: DashboardPlugin): Promise<number> 
  * @param year 
  * @returns Promise<number>
  */
-export async function getWordCountByYear(year: number): Promise<number> {
+export async function getWordCountByYear(year: number, plugin: DashboardPlugin): Promise<number> {
     try {
+        const notebooksCondition = await plugin.getNotebooksCondition();
         const targetStr = format(new Date(year, 0), 'yyyy');
-        const sqlStr = 'select sum(length(content)) as total from blocks where type = "p" and created like "' + targetStr + '%" and box != "20210808180117-czj9bvb"';
+        const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${targetStr}%" and ${notebooksCondition}`;
         const res = await sql(sqlStr);
         const count = res[0]?.total || 0;
         Logger.debug('getWordCountByYear > count:' + count);
@@ -51,7 +52,7 @@ export async function getWordCountByYearData(year: number, plugin: DashboardPlug
     try {
         const values: number[] = [];
         for (let month = 1; month <= 12; month++) {
-            const count = await getMonthWordCount(year, month);
+            const count = await getMonthWordCount(year, month, plugin);
             values.push(count);
         }
         return {
@@ -99,11 +100,12 @@ export async function getWordCountByYearData(year: number, plugin: DashboardPlug
  * @param month 
  * @returns Promise<number>
  */
-async function getMonthWordCount(year: number, month: number): Promise<number> {
+async function getMonthWordCount(year: number, month: number, plugin: DashboardPlugin): Promise<number> {
+    const notebooksCondition = await plugin.getNotebooksCondition();
     const targetDate = new Date(year, month - 1);
     const targetStr = format(targetDate, 'yyyyMM');
     Logger.debug('getMonthWordCount > year:' + year + ' month:' + month+",targetStr:"+targetStr);
-    const sqlStr = 'select sum(length(content)) as total from blocks where type = "p" and created like "' + targetStr + '%" and box != "20210808180117-czj9bvb"';
+    const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${targetStr}%" and ${notebooksCondition}`;
     const res = await sql(sqlStr);
     return res[0]?.total || 0;
 }
@@ -114,16 +116,17 @@ async function getMonthWordCount(year: number, month: number): Promise<number> {
  * @param month 
  * @returns Promise<{labels: string[], values: number[]}>
  */
-export async function getMonthWordCountData(year: number, month: number): Promise<{labels: string[], values: number[]}> {
+export async function getMonthWordCountData(year: number, month: number, plugin: DashboardPlugin): Promise<{labels: string[], values: number[]}> {
     Logger.debug('getMonthWordCountData > year:' + year + ' month:' + month);
     try {
+        const notebooksCondition = await plugin.getNotebooksCondition();
         const daysInMonth = new Date(year, month, 0).getDate();
         const values = new Array(daysInMonth).fill(0);
         const labels = Array.from({length: daysInMonth}, (_, i) => `${i + 1}`);
         
         for (let day = 1; day <= daysInMonth; day++) {
             const dayStr = format(new Date(year, month - 1, day), 'yyyyMMdd');
-            const sqlStr = 'select sum(length(content)) as total from blocks where type = "p" and created like "' + dayStr + '%" and box != "20210808180117-czj9bvb"';
+            const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${dayStr}%" and ${notebooksCondition}`;
             const res = await sql(sqlStr);
             values[day - 1] = res[0]?.total || 0;
         }
@@ -148,6 +151,7 @@ export async function getMonthWordCountData(year: number, month: number): Promis
 export async function getWeekWordCountData(plugin: DashboardPlugin): Promise<{labels: string[], values: number[]}> {
     Logger.debug('getWeekWordCountData');
     try {
+        const notebooksCondition = await plugin.getNotebooksCondition();
         const today = new Date();
         const values = new Array(7).fill(0);
         const labels = [
@@ -167,8 +171,7 @@ export async function getWeekWordCountData(plugin: DashboardPlugin): Promise<{la
             const currentDate = new Date(monday);
             currentDate.setDate(monday.getDate() + i);
             const dayStr = format(currentDate, 'yyyyMMdd');
-            
-            const sqlStr = 'select sum(length(content)) as total from blocks where type = "p" and created like "' + dayStr + '%" and box != "20210808180117-czj9bvb"';
+            const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${dayStr}%" and ${notebooksCondition}`;
             const res = await sql(sqlStr);
             values[i] = res[0]?.total || 0;
         }
@@ -198,11 +201,12 @@ export async function getWeekWordCountData(plugin: DashboardPlugin): Promise<{la
  * @returns Promise<number> today's word count
  * @author jzman
  */
-export async function getWordCountToday(): Promise<number> {
+export async function getWordCountToday(plugin: DashboardPlugin): Promise<number> {
     try {
+        const notebooksCondition = await plugin.getNotebooksCondition();
         const today = new Date();
         const todayStr = format(today, 'yyyyMMdd');
-        const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${todayStr}%" and box != "20210808180117-czj9bvb"`;
+        const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and created like "${todayStr}%" and ${notebooksCondition}`;
         Logger.debug('getWordCountToday > sql:' + sqlStr);
         const res = await sql(sqlStr);
         const count = res[0]?.total ?? 0;
