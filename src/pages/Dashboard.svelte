@@ -21,9 +21,9 @@
       const [days, realDays, docCount, wordCount, tagCount] = await Promise.all([
         getUseSiYuanDays(),
         getRealUseSiYuanDays(),
-        getDocCountAll(),
-        getWordCountALl(),
-        getTagCountTotal()
+        getDocCountAll(plugin),
+        getWordCountALl(plugin),
+        getTagCountTotal(plugin)
       ]);
       
       stats = {

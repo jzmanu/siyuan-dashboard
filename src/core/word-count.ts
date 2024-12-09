@@ -1,15 +1,17 @@
 import { sql } from '../api';
 import { Logger } from '../utils/mlog';
 import { format } from 'date-fns';
-import { Plugin } from "siyuan";
+import { DashboardPlugin } from '../index';
+
 /**
  * get word count all.
  * @returns Promise<number>
  * @author jzman
  */
-export async function getWordCountALl(): Promise<number> {
+export async function getWordCountALl(plugin: DashboardPlugin): Promise<number> {
     try {
-        const sqlStr = 'select sum(length(content)) as total from blocks where type = "p" and box != "20210808180117-czj9bvb"';
+        const notebooksCondition = await plugin.getNotebooksCondition();
+        const sqlStr = `select sum(length(content)) as total from blocks where type = "p" and ${notebooksCondition}`;
         const res = await sql(sqlStr);
         const count = res[0]?.total || 0;
         Logger.debug('getWordCountALl > count:' + count);

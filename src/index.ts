@@ -10,9 +10,11 @@ import {
     Menu,
 } from "siyuan";
 import "@/index.scss";
-
+import { 
+    SIYUAN_USAGE_DOC_ID, 
+    NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY
+} from "./base/Config";
 const STORAGE_NAME = "menu-config";
-
 import Dashboard from './pages/Dashboard.svelte';
 import { Logger } from "./utils/mlog";
 
@@ -57,6 +59,7 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
                   });
             },
         });
+        this.getNotebooksCondition();
     }
 
     onLayoutReady() {
@@ -78,5 +81,22 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
             return 0;
         });
         return options;
+    }
+
+    async getNotebooksCondition() {
+        const savedConfig = await this.loadData(NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY);
+        if (savedConfig?.notebooks) {
+            const activeNotebooks = savedConfig.notebooks.filter(notebook => notebook.active);
+            if (activeNotebooks.length === 0) {
+                return '';
+            }
+            const conditions = activeNotebooks.map(notebook => `box = '${notebook.id}'`);
+            const conditionStr = conditions.join(' or ');
+            Logger.debug(`getNotebooksCondition > conditionStr: ${conditionStr}`);
+            return `(${conditionStr})`;
+        } else {
+            Logger.debug('getNotebooksCondition > savedConfig is null');
+        }
+        return '';
     }
 }
