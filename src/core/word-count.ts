@@ -1,7 +1,7 @@
 import { sql } from '../api';
 import { Logger } from '../utils/mlog';
 import { format } from 'date-fns';
-import { DashboardPlugin } from '../index';
+import DashboardPlugin from '../index';
 
 /**
  * get word count all.
@@ -47,7 +47,7 @@ export async function getWordCountByYear(year: number): Promise<number> {
  * @returns Promise<{labels: string[], values: number[]}>
  * @author jzman
  */
-export async function getWordCountByYearData(year: number, plugin: Plugin): Promise<{labels: string[], values: number[]}> {
+export async function getWordCountByYearData(year: number, plugin: DashboardPlugin): Promise<{labels: string[], values: number[]}> {
     try {
         const values: number[] = [];
         for (let month = 1; month <= 12; month++) {
@@ -145,12 +145,20 @@ export async function getMonthWordCountData(year: number, month: number): Promis
  * get week word count data.
  * @returns Promise<{labels: string[], values: number[]}>
  */
-export async function getWeekWordCountData(plugin: Plugin): Promise<{labels: string[], values: number[]}> {
+export async function getWeekWordCountData(plugin: DashboardPlugin): Promise<{labels: string[], values: number[]}> {
     Logger.debug('getWeekWordCountData');
     try {
         const today = new Date();
         const values = new Array(7).fill(0);
-        const labels = [plugin.i18n.mondays, plugin.i18n.tuesdays, plugin.i18n.wednesdays, plugin.i18n.thursdays, plugin.i18n.fridays, plugin.i18n.saturdays, plugin.i18n.sundays];
+        const labels = [
+            plugin.i18n.mondays, 
+            plugin.i18n.tuesdays, 
+            plugin.i18n.wednesdays, 
+            plugin.i18n.thursdays, 
+            plugin.i18n.fridays, 
+            plugin.i18n.saturdays, 
+            plugin.i18n.sundays
+        ];
         
         const monday = new Date(today);
         monday.setDate(today.getDate() - (today.getDay() || 7) + 1);

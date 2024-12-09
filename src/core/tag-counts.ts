@@ -1,6 +1,6 @@
 import { sql } from '../api';
 import { Logger } from '../utils/mlog';
-import { DashboardPlugin } from '../index';
+import DashboardPlugin from '../index';
 /**
  * get all tag count.
  * @author jzman 
