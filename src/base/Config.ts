@@ -1,5 +1,5 @@
 // Version
-export const VERSION = "1.0.0";
+export const VERSION = "1.2.0";
 // siyuan usage doc
 export const SIYUAN_USAGE_DOC_ID = "20210808180117-czj9bvb";
 // Sql max limit

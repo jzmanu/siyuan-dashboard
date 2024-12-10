@@ -2,7 +2,7 @@
   "name": "siyuan-dashboard",
   "author": "jzman",
   "url": "https://github.com/jzmanu/siyuan-dashboard",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "minAppVersion": "3.1.1",
   "backends": [
     "windows",
@@ -21,8 +21,8 @@
     "zh_CN": "仪表盘"
   },
   "description": {
-    "en_US": "SiYuan dashboard, the best SiYuan data statistics plugin.",
-    "zh_CN": "思源仪表盘，好用的思源数据统计插件。"
+    "en_US": "SiYuan dashboard, the best SiYuan note data statistics plugin.",
+    "zh_CN": "思源仪表盘，好用的思源笔记数据统计插件。"
   },
   "readme": {
     "en_US": "README_zh_CN.md",
@@ -34,6 +34,6 @@
     ]
   },
   "keywords": [
-    "仪表盘", "字数统计", "字数","words", "word", "dashboard", "analyse","data"
+    "仪表盘", "字数统计", "字数","数据统计","words", "word", "dashboard", "analyse","data", "statistics", "plugin"
   ]
 }
