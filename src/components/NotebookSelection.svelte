@@ -121,7 +121,7 @@
         checked={notebooks.every(n => n.active)}
         on:change={toggleAll}
       >
-      <span>{plugin.i18n.allSelected}</span>
+      <span class="all-selected">{plugin.i18n.allSelected}</span>
     </label>
   </div>
 
@@ -151,6 +151,18 @@
 </button>
 
 <style>
+  :global(html[data-theme-mode="dark"]) .all-selected {
+    color: #a1a1b2;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  :global(html[data-theme-mode="light"]) .all-selected {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
   .notebook-selection {
     all: unset; 
     padding: 8px 4px;
@@ -196,11 +208,24 @@
     background-color: var(--b3-list-hover);
   }
 
-  .notebook-name {
+  :global(html[data-theme-mode="dark"]) .notebook-name {
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #a1a1b2;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  :global(html[data-theme-mode="light"]) .notebook-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
   }
 
   .checkbox-wrapper {

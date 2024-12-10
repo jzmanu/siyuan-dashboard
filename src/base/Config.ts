@@ -13,3 +13,6 @@ export const DEFAULT_DATE_FORMAT_ZH = 'yyyy年MM月dd日';
 
 // notebook selection config storage key
 export const NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY = "notebook-selection-config";
+
+// notebook selection closed event
+export const EVENT_NOTEBOOK_SELECTION_CLOSED = "event-notebook-selection-closed";

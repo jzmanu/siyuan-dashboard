@@ -3,10 +3,13 @@
   import HomeWord from '../components/HomeWord.svelte';
   import PopupDialog from '../components/AboutDialog.svelte';
   import { Logger } from '../utils/mlog';
-  import { Plugin } from "siyuan";
+  import DashboardPlugin from '../index';
   import NotebookSelection from '../components/NotebookSelection.svelte';
+  import { EVENT_NOTEBOOK_SELECTION_CLOSED } from '../base/Config';
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
   
-  export let plugin: Plugin; 
+  export let plugin: DashboardPlugin; 
   export let stats: {
     days: number;
     daysPercent: number;
@@ -39,6 +42,8 @@
       !notebookButtonRef.contains(event.target as Node)
     ) {
       showNotebookSelection = false;
+      // dispatch notebook selection closed event
+      dispatch(EVENT_NOTEBOOK_SELECTION_CLOSED);
     }
     if (
       showPopup && 
