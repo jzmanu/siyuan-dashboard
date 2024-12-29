@@ -31,12 +31,14 @@
         Logger.error("Failed to get notebooks");
       }
 
-      const currentNotebooks = response.notebooks.map(nb => ({
-        id: nb.id,
-        name: nb.name,
-        icon: nb.icon || "📔",
-        active: true
-      }));
+      const currentNotebooks = response.notebooks
+        .filter(nb => !nb.closed)
+        .map(nb => ({
+          id: nb.id,
+          name: nb.name,
+          icon: nb.icon || "📔",
+          active: true
+        }));
 
       // merge config
       if (savedConfig?.notebooks) {
