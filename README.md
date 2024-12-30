@@ -1,79 +1,83 @@
-# 思源仪表盘
+# siyuan-dashboard
 
-[英文版README](./README_zh_CN.md)
+[Chinese version README](./README.md)
 
-![siyuan-dashboard](logo.png)
+![siyuan-dashboard](logo-english.png)
 
-siyuan-dashboard，可翻译为“思源仪表盘”，该插件是一款思源笔记插件，主要用来展示思源笔记的统计数据，直接看看效果图：
+siyuan-dashboard, which can be translated as "Siyuan Dashboard", is a Siyuan Notes plugin, mainly used to display the statistics of Siyuan Notes. Take a look at the effect diagram:
 
-![siyuan-dashboard](preview.png)
+![siyuan-dashboard](preview-english.png)
 
+# Function introduction
 
-# 功能介绍
+Siyuan-dashboard is a data statistics plugin, and currently supports the following functions:
 
-siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
-- 支持天数、笔记、字数、标签数量统计。
-- 支持使用天数百分比显示(实际使用天数/总天数)。
-- 支持年、月、周总字数和平均字数统计。
-- 支持年、月切换查看历史数据。
-- 适配明亮、黑暗模式。
-- 多语言适配支持英文。
+- Supports statistics of days, notes, words, and tags.
+- Supports percentage display of usage days (actual usage days/total days).
+- Supports total word count and average word count statistics for years, months, and weeks.
+- Supports switching between years and months to view historical data.
+- Adapts to light and dark modes.
+- Multi-language adaptation supports English.
+- Support notebook selection.
+- The word count displays weekly word count by default.
 
-> 目前主要适配了桌面端，移动端暂时没有适配，如有需要后续会适配。
+> Currently, it is mainly adapted to the desktop, and the mobile terminal is not adapted for the time being. If necessary, it will be adapted later.
 
-# 使用方式
+# Usage
 
-在顶栏选择图标「仪表盘」，右上角会显示统计数据，下面演示一下：
+Select the "Dashboard" icon in the top bar, and the statistics will be displayed in the upper right corner. Here is a demonstration:
 
-![siyuan-icon-tools](dashboard-usage.gif)
+![siyuan-icon-tools](dashboard-usage-english.gif)
 
-# 版本记录
+# Version History
 
 ## v1.0.0
 
-- 初始版本，支持基本的统计功能。
+- Initial version, supports basic statistics functions.
 
 ## v1.0.1
 
-- 修复README中图片在插件商店未显示异常。
+- Fixed the problem that the image in README is not displayed in the plugin store.
 
 ## v1.1.0
 
-- 多语言适配支持英文。
-- 调整图标右边界内边距。
-- 调整图表年月日文字之间的间距。
+- Multi-language adaptation supports English.
+- Adjust the right margin of the icon.
+- Adjust the spacing between the year, month, and day text in the chart.
 
 ## v1.1.1
 
-- 修复README中图片在插件商店未显示异常。
+- Fixed the problem that the image in README is not displayed in the plugin store.
 
-# 问题反馈
+## v1.2.0
 
-如果在使用过程中遇到问题，欢迎在 Github 上提 [issues](https://github.com/jzmanu/siyuan-dashboard/issues)。
+- Added notebook selection feature to list only opened notebooks.
+- The word count displays weekly word count by default.
+# Feedback
 
+If you encounter any problems during use, please raise [issues](https://github.com/jzmanu/siyuan-dashboard/issues) on Github.
 
-# 支持作者
+# Support the author
 
-如果您认可这个项目，请我喝一杯咖啡吧，这将[鼓励](https://afdian.com/a/jzman)我持续更新，并创作出更多好用的工具~
+If you approve of this project, please buy me a cup of coffee. This will [encourage](https://afdian.com/a/jzman) me to continue updating and create more useful tools~
 
-## 微信
+## WeChat
 
 <img src="wechat.png" style="width: 280px; height: 406px; margin-left: 0;">
 
-## 支付宝
+## Alipay
 
-<img src="alipay.png" style="width: 270px; height: 381px; margin-left: 0;">
+<img src="alipay.jpg" style="width: 270px; height: 381px; margin-left: 0;">
 
 ## Github Star
 
-给个[Github Star](https://github.com/jzmanu/siyuan-dashboard)支持作者吧~
+Give a [Github Star](https://github.com/jzmanu/siyuan-dashboard) to support the author~
 
-# 联系我
+# Contact me
 
-![微信公众号](gxz.png)
+![WeChat public account](gxz.png)
 
-# 鸣谢
+# Acknowledgements
 
-- [古诗词一言API](http://gushi.ci)。
-- [思源笔记](https://b3log.org/siyuan)。
-
+- [Ancient Poetry One Word API](http://gushi.ci).
+- [Siyuan Notes](https://b3log.org/siyuan).
