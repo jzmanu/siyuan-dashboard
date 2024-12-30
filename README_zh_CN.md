@@ -1,6 +1,6 @@
 # 思源仪表盘
 
-[英文版README](./README_zh_CN.md)
+[English](./README.md)
 
 ![siyuan-dashboard](logo.png)
 
@@ -19,7 +19,6 @@ siyuan-dashboard 作为数据统计插件，目前支持的功能如下：
 - 适配明亮、黑暗模式。
 - 多语言适配支持英文。
 - 支持笔记本选择。
-- 字数统计默认显示周字数。
 
 > 目前主要适配了桌面端，移动端暂时没有适配，如有需要后续会适配。
 

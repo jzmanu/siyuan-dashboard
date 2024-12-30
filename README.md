@@ -1,6 +1,6 @@
 # siyuan-dashboard
 
-[Chinese version README](./README.md)
+[中文](./README_zh_CN.md)
 
 ![siyuan-dashboard](logo-english.png)
 
@@ -19,7 +19,6 @@ Siyuan-dashboard is a data statistics plugin, and currently supports the followi
 - Adapts to light and dark modes.
 - Multi-language adaptation supports English.
 - Support notebook selection.
-- The word count displays weekly word count by default.
 
 > Currently, it is mainly adapted to the desktop, and the mobile terminal is not adapted for the time being. If necessary, it will be adapted later.
 
