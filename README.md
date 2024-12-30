@@ -30,23 +30,18 @@ Select the "Dashboard" icon in the top bar, and the statistics will be displayed
 
 # Version History
 
+> Important version update.
+
 ## v1.0.0
 
 - Initial version, supports basic statistics functions.
 
-## v1.0.1
-
-- Fixed the problem that the image in README is not displayed in the plugin store.
 
 ## v1.1.0
 
 - Multi-language adaptation supports English.
 - Adjust the right margin of the icon.
 - Adjust the spacing between the year, month, and day text in the chart.
-
-## v1.1.1
-
-- Fixed the problem that the image in README is not displayed in the plugin store.
 
 ## v1.2.0
 
