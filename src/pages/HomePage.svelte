@@ -199,6 +199,8 @@
     font-weight: bold;
     margin-bottom: 0.5rem;
     color: white;
+    line-height: 1.2;
+    padding-top: 0.5rem;
   }
 
   .stat-label {

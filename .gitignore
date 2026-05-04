@@ -9,3 +9,8 @@ dev
 dist
 build
 tmp
+
+.claude
+.cursor
+.shared
+CLAUDE.md

@@ -44,3 +44,75 @@ notebook: 笔记本
 allSelected: 全选
 loading: 加载中...
 
+# MVR 年报相关
+mvrReport: 年度报告
+mvrReportTitle: 知识花园年度报告
+generatingReport: 正在生成年报...
+reportLoadError: 加载年报数据失败，请重试
+retry: 重试
+close: 关闭
+startReview: 开始回顾
+prevPage: 上一页
+nextPage: 下一页
+saveImage: 保存图片
+
+# 第1页：封面
+coverTitle: 这是你在思源里的
+coverSubtitle: 点击开启你的年度回顾
+
+# 第2页：时间投入
+timeInvestmentTitle: 这一年你来过多少次
+daysWithRecords: 天里留下了记录
+mvrWords: 字
+mvrBlocks: 个块
+avgWordsPerDay: 平均每天字数
+emotionTimeInvestment: 并不是每天，但你从未离开太久。
+
+# 第3页：记录节奏
+rhythmTitle: 你的记录节奏
+nightOwl: 夜猫型记录者
+earlyBird: 早起型记录者
+workType: 工作型记录者
+stableType: 稳定型记录者
+fragmentedType: 碎片型记录者
+emotionRhythm: 你更容易在夜深人静时整理自己。
+
+# 第4页：内容倾向
+contentFocusTitle: 你在记录什么
+emotionContentFocus: 这一年，你最常回到这些主题。
+
+# 第5页：最长坚持
+streakTitle: 最重要的一段坚持
+emotionStreak: 那是一段你没有放弃记录的日子。
+
+# 第6页：凌晨三点的你
+lateNightTitle: 凌晨三点的你
+noLateNightRecord: 没有熬夜记录
+emotionNoLateNight: 这一年，你很懂得照顾自己，没有在凌晨0-5点记录。早睡早起身体好！🌞
+emotionLateNightWithTitle: 凌晨{time}，世界都睡了，你还在记录这个。
+emotionLateNightNoTitle1: 凌晨{time}，你创建了一个无标题文档，大概是太困了吧 😴
+emotionLateNightNoTitle2: 凌晨{time}，什么都没写就睡着了，这一天一定很辛苦
+emotionLateNightNoTitle3: 凌晨{time}，匆匆创建了一个文档，内容已经记不清了吧
+noTitle: (无标题)
+
+# 第7页：总结
+summaryTitle: 年度总结
+summaryTemplate: "{year} 年，你是一位\n{rhythmType}\n在「{topic}」上留下了最多痕迹。"
+
+# 连续天数分类
+streakSpark: 星火
+streakIceBreaker: 破冰
+streakTide: 潮汐
+streakAtHelm: 舵手
+streakDeepDive: 深潜
+streakTradeWinds: 信风
+streakFlywheel: 飞轮
+streakOpenSea: 远洋
+streakSymbiosis: 共生
+
+# 热力图相关
+heatmapDays: 连续天数
+heatmapDate: 时间
+heatmapCategory: 分类
+
+
