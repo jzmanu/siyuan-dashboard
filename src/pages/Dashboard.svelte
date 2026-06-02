@@ -9,6 +9,8 @@
     daysPercent: 0,
     documents: 0,
     words: 0,
+    codeBlocks: 0,
+    codeLines: 0,
     tags: 0
   };
 

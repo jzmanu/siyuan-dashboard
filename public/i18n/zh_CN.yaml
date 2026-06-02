@@ -115,4 +115,16 @@ heatmapDays: 连续天数
 heatmapDate: 时间
 heatmapCategory: 分类
 
+# 统计设置
+enableWordCount: 字数统计
+enableWordCountDesc: 使用正则分词统计实际字数，默认统计字符数
+enableCodeStats: 代码统计
+enableCodeStatsDesc: 统计代码块数量和代码行数
+enableListStats: 列表项统计
+enableListStatsDesc: 统计列表项中的文字内容
+enableBlockquoteStats: 引用块统计
+enableBlockquoteStatsDesc: 统计引用块中的文字内容
+codeBlocks: 代码块
+codeLines: 代码行
+
 

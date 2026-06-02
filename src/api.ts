@@ -288,6 +288,27 @@ export async function getBlockAttrs(id: BlockId): Promise<{ [key: string]: strin
     return request(url, data);
 }
 
+// **************************************** Stat ****************************************
+
+export interface BlockStatResult {
+    runeCount: number;
+    wordCount: number;
+    linkCount: number;
+    imageCount: number;
+    refCount: number;
+    blockCount: number;
+}
+
+export async function getBlocksWordCount(ids: string[]): Promise<{ stat: BlockStatResult }> {
+    let url = '/api/block/getBlocksWordCount';
+    return request(url, { ids });
+}
+
+export async function getTreeStat(id: string): Promise<{ stat: BlockStatResult }> {
+    let url = '/api/block/getTreeStat';
+    return request(url, { id });
+}
+
 // **************************************** SQL ****************************************
 
 export async function sql(sql: string): Promise<any[]> {

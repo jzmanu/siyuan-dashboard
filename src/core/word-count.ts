@@ -40,8 +40,7 @@ function wordCountOfSegment(str: string): number {
 }
 
 function getTypeCondition(plugin: DashboardPlugin): string {
-    const types = ['"p"', '"h"'];
-    if (plugin.statsToggleConfig.enableListStats) types.push('"i"');
+    const types = ['"p"', '"h"', '"i"'];
     if (plugin.statsToggleConfig.enableBlockquoteStats) types.push('"b"');
     return `type in (${types.join(', ')})`;
 }

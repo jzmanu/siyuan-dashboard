@@ -8,15 +8,15 @@ import {
     ICardData,
     IPluginDockTab,
     Menu,
+    Setting,
 } from "siyuan";
 import "@/index.scss";
-import { 
+import {
     NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY
 } from "./base/Config";
 const STORAGE_NAME = "menu-config";
 import Dashboard from './pages/Dashboard.svelte';
 import Report from './components/Report.svelte';
-import { SettingUtils } from './libs/setting-utils';
 import { Logger } from "./utils/mlog";
 
 export default class DashboardPlugin extends Plugin implements IPluginDockTab{
@@ -33,10 +33,9 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
     public statsToggleConfig = {
         enableWordCount: false,
         enableCodeStats: false,
-        enableListStats: false,
         enableBlockquoteStats: false,
     };
-    private settingUtils: SettingUtils;
+    private elements: Map<string, HTMLElement> = new Map();
 
     async onload() {
         Logger.info("DashboardPlugin load.");
@@ -116,58 +115,59 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
         return '';
     }
 
+    /**
+     * Settings initialization
+     */
     private async initSettings() {
-        this.settingUtils = new SettingUtils({
-            plugin: this,
-            name: 'stats-toggle',
-            callback: (data) => {
-                this.statsToggleConfig = {
-                    enableWordCount: data.enableWordCount ?? false,
-                    enableCodeStats: data.enableCodeStats ?? false,
-                    enableListStats: data.enableListStats ?? false,
-                    enableBlockquoteStats: data.enableBlockquoteStats ?? false,
-                };
-            }
+        // 加载已保存的配置
+        const savedData = await this.loadData('stats-toggle.json');
+        this.statsToggleConfig = {
+            enableWordCount: savedData?.enableWordCount ?? false,
+            enableCodeStats: savedData?.enableCodeStats ?? false,
+            enableBlockquoteStats: savedData?.enableBlockquoteStats ?? false,
+        };
+
+        // 不传 confirmCallback/destroyCallback，设置面板不会显示确认/取消按钮
+        this.setting = new Setting({
+            height: 'auto',
         });
 
-        this.settingUtils.addItem({
-            key: 'enableWordCount',
+        // 切换开关后立即保存并生效
+        const handleToggle = async () => {
+            this.statsToggleConfig = {
+                enableWordCount: (this.elements.get('enableWordCount') as HTMLInputElement)?.checked ?? false,
+                enableCodeStats: (this.elements.get('enableCodeStats') as HTMLInputElement)?.checked ?? false,
+                enableBlockquoteStats: (this.elements.get('enableBlockquoteStats') as HTMLInputElement)?.checked ?? false,
+            };
+            await this.saveData('stats-toggle.json', this.statsToggleConfig);
+        };
+
+        const createCheckbox = (key: string, checked: boolean): HTMLInputElement => {
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.className = 'b3-switch fn__flex-center';
+            input.checked = checked;
+            input.onchange = handleToggle;
+            this.elements.set(key, input);
+            return input;
+        };
+
+        this.setting.addItem({
             title: this.i18n.enableWordCount,
             description: this.i18n.enableWordCountDesc,
-            type: 'checkbox',
-            value: false,
+            createActionElement: () => createCheckbox('enableWordCount', this.statsToggleConfig.enableWordCount),
         });
 
-        this.settingUtils.addItem({
-            key: 'enableCodeStats',
+        this.setting.addItem({
             title: this.i18n.enableCodeStats,
             description: this.i18n.enableCodeStatsDesc,
-            type: 'checkbox',
-            value: false,
+            createActionElement: () => createCheckbox('enableCodeStats', this.statsToggleConfig.enableCodeStats),
         });
 
-        this.settingUtils.addItem({
-            key: 'enableListStats',
-            title: this.i18n.enableListStats,
-            description: this.i18n.enableListStatsDesc,
-            type: 'checkbox',
-            value: false,
-        });
-
-        this.settingUtils.addItem({
-            key: 'enableBlockquoteStats',
+        this.setting.addItem({
             title: this.i18n.enableBlockquoteStats,
             description: this.i18n.enableBlockquoteStatsDesc,
-            type: 'checkbox',
-            value: false,
+            createActionElement: () => createCheckbox('enableBlockquoteStats', this.statsToggleConfig.enableBlockquoteStats),
         });
-
-        await this.settingUtils.load();
-        this.statsToggleConfig = {
-            enableWordCount: this.settingUtils.get('enableWordCount') ?? false,
-            enableCodeStats: this.settingUtils.get('enableCodeStats') ?? false,
-            enableListStats: this.settingUtils.get('enableListStats') ?? false,
-            enableBlockquoteStats: this.settingUtils.get('enableBlockquoteStats') ?? false,
-        };
     }
 }

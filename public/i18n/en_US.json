@@ -42,5 +42,15 @@
     "December": "Dec",
     "notebook": "Notebook",
     "allSelected": "All",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "enableWordCount": "Word Count",
+    "enableWordCountDesc": "Count actual words using regex, default counts characters",
+    "enableCodeStats": "Code Statistics",
+    "enableCodeStatsDesc": "Count code blocks and code lines",
+    "enableListStats": "List Item Stats",
+    "enableListStatsDesc": "Include list item content in statistics",
+    "enableBlockquoteStats": "Blockquote Stats",
+    "enableBlockquoteStatsDesc": "Include blockquote content in statistics",
+    "codeBlocks": "Code Blocks",
+    "codeLines": "Code Lines"
 }

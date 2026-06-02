@@ -15,6 +15,8 @@
     daysPercent: number;
     documents: number;
     words: number;
+    codeBlocks: number;
+    codeLines: number;
     tags: number;
   };
   export let data: any;
@@ -136,6 +138,16 @@
       <div class="stat-value">{stats.tags}</div>
       <div class="stat-label"><h4>{plugin.i18n.tags}</h4></div>
     </div>
+    {#if plugin.statsToggleConfig.enableCodeStats}
+      <div class="stat-card" style="background: linear-gradient(45deg, #9C27B0, #E040FB)">
+        <div class="stat-value">{stats.codeBlocks}</div>
+        <div class="stat-label"><h4>{plugin.i18n.codeBlocks}</h4></div>
+      </div>
+      <div class="stat-card" style="background: linear-gradient(45deg, #00BCD4, #4DD0E1)">
+        <div class="stat-value">{stats.codeLines}</div>
+        <div class="stat-label"><h4>{plugin.i18n.codeLines}</h4></div>
+      </div>
+    {/if}
   </div>
 
   <HomeWord 
