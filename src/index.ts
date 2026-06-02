@@ -15,6 +15,8 @@ import {
 } from "./base/Config";
 const STORAGE_NAME = "menu-config";
 import Dashboard from './pages/Dashboard.svelte';
+import Report from './components/Report.svelte';
+import { SettingUtils } from './libs/setting-utils';
 import { Logger } from "./utils/mlog";
 
 export default class DashboardPlugin extends Plugin implements IPluginDockTab{
@@ -28,6 +30,13 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
 
     customTab: () => IModel;
     private isMobile: boolean;
+    public statsToggleConfig = {
+        enableWordCount: false,
+        enableCodeStats: false,
+        enableListStats: false,
+        enableBlockquoteStats: false,
+    };
+    private settingUtils: SettingUtils;
 
     async onload() {
         Logger.info("DashboardPlugin load.");
@@ -59,6 +68,7 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
             },
         });
         this.getNotebooksCondition();
+        this.initSettings();
     }
 
     onLayoutReady() {
@@ -82,13 +92,20 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
         return options;
     }
 
+    /**
+     * 生成笔记本过滤的SQL条件，只统计用户已勾选的笔记本
+     * @returns 
+     */
     async getNotebooksCondition() {
+        // 从插件存储中加载笔记本选择配置
         const savedConfig = await this.loadData(NOTEBOOK_SELECTION_CONFIG_STORAGE_KEY);
         if (savedConfig?.notebooks) {
+            // 筛选出用户勾选的笔记本
             const activeNotebooks = savedConfig.notebooks.filter(notebook => notebook.active);
             if (activeNotebooks.length === 0) {
                 return '';
             }
+            // 拼接成 (box = 'id1' or box = 'id2' or ...) 的SQL条件
             const conditions = activeNotebooks.map(notebook => `box = '${notebook.id}'`);
             const conditionStr = conditions.join(' or ');
             Logger.debug(`getNotebooksCondition > conditionStr: ${conditionStr}`);
@@ -97,5 +114,60 @@ export default class DashboardPlugin extends Plugin implements IPluginDockTab{
             Logger.debug('getNotebooksCondition > savedConfig is null');
         }
         return '';
+    }
+
+    private async initSettings() {
+        this.settingUtils = new SettingUtils({
+            plugin: this,
+            name: 'stats-toggle',
+            callback: (data) => {
+                this.statsToggleConfig = {
+                    enableWordCount: data.enableWordCount ?? false,
+                    enableCodeStats: data.enableCodeStats ?? false,
+                    enableListStats: data.enableListStats ?? false,
+                    enableBlockquoteStats: data.enableBlockquoteStats ?? false,
+                };
+            }
+        });
+
+        this.settingUtils.addItem({
+            key: 'enableWordCount',
+            title: this.i18n.enableWordCount,
+            description: this.i18n.enableWordCountDesc,
+            type: 'checkbox',
+            value: false,
+        });
+
+        this.settingUtils.addItem({
+            key: 'enableCodeStats',
+            title: this.i18n.enableCodeStats,
+            description: this.i18n.enableCodeStatsDesc,
+            type: 'checkbox',
+            value: false,
+        });
+
+        this.settingUtils.addItem({
+            key: 'enableListStats',
+            title: this.i18n.enableListStats,
+            description: this.i18n.enableListStatsDesc,
+            type: 'checkbox',
+            value: false,
+        });
+
+        this.settingUtils.addItem({
+            key: 'enableBlockquoteStats',
+            title: this.i18n.enableBlockquoteStats,
+            description: this.i18n.enableBlockquoteStatsDesc,
+            type: 'checkbox',
+            value: false,
+        });
+
+        await this.settingUtils.load();
+        this.statsToggleConfig = {
+            enableWordCount: this.settingUtils.get('enableWordCount') ?? false,
+            enableCodeStats: this.settingUtils.get('enableCodeStats') ?? false,
+            enableListStats: this.settingUtils.get('enableListStats') ?? false,
+            enableBlockquoteStats: this.settingUtils.get('enableBlockquoteStats') ?? false,
+        };
     }
 }

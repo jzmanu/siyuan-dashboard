@@ -1,6 +1,7 @@
 import { getUseSiYuanDays, getRealUseSiYuanDays } from '../core/day-count';
 import { getDocCountAll } from '../core/doc-count';
-import { getWordCountALl, getWordCountByYearData, getMonthWordCountData, getWeekWordCountData } from '../core/word-count';
+import { getWordCountByYearData, getMonthWordCountData, getWeekWordCountData, getActualWordCountByYearData, getActualMonthWordCountData, getActualWeekWordCountData, getWordCountTotal } from '../core/word-count';
+import { getCodeBlockCount, getCodeLinesCount } from '../core/code-count';
 import { getTagCountTotal } from '../core/tag-counts';
 import { Logger } from '../utils/mlog';
 import type DashboardPlugin from '../index';
@@ -10,6 +11,8 @@ export interface Stats {
   daysPercent: number;
   documents: number;
   words: number;
+  codeBlocks: number;
+  codeLines: number;
   tags: number;
 }
 
@@ -33,22 +36,33 @@ export interface WordStatisticsData {
  */
 export async function getBaseStatisticsData(plugin: DashboardPlugin): Promise<Stats> {
   try {
-    const [days, realDays, docCount, wordCount, tagCount] = await Promise.all([
+    const config = plugin.statsToggleConfig;
+
+    const [days, realDays, docCount, tagCount] = await Promise.all([
       getUseSiYuanDays(plugin),
       getRealUseSiYuanDays(plugin),
       getDocCountAll(plugin),
-      getWordCountALl(plugin),
       getTagCountTotal(plugin)
     ]);
-    let percent = Math.round((realDays / days) * 100);
-    if(days == 0){
-      percent = 0;
+
+    const wordCount = await getWordCountTotal(plugin);
+
+    let [codeBlocks, codeLines] = [0, 0];
+    if (config.enableCodeStats) {
+      [codeBlocks, codeLines] = await Promise.all([
+        getCodeBlockCount(plugin),
+        getCodeLinesCount(plugin)
+      ]);
     }
+
+    let percent = days === 0 ? 0 : Math.round((realDays / days) * 100);
     return {
       days: realDays,
       daysPercent: percent,
       documents: docCount,
       words: wordCount,
+      codeBlocks,
+      codeLines,
       tags: tagCount
     };
   } catch (err) {
@@ -61,10 +75,13 @@ export async function getBaseStatisticsData(plugin: DashboardPlugin): Promise<St
  * 获取字数统计数据服务
  */
 export function getWordStatisticsData(plugin: DashboardPlugin): WordStatisticsData {
+  const useActualWordCount = plugin.statsToggleConfig.enableWordCount;
   return {
     getYearData: async (year: number) => {
       try {
-        return await getWordCountByYearData(year, plugin);
+        return useActualWordCount
+          ? await getActualWordCountByYearData(year, plugin)
+          : await getWordCountByYearData(year, plugin);
       } catch (err) {
         Logger.error('getWordStatisticsData > Failed to get year data: ' + err);
         return {
@@ -88,7 +105,9 @@ export function getWordStatisticsData(plugin: DashboardPlugin): WordStatisticsDa
     },
     getMonthData: async (year: number, month: number) => {
       try {
-        return await getMonthWordCountData(year, month, plugin);
+        return useActualWordCount
+          ? await getActualMonthWordCountData(year, month, plugin)
+          : await getMonthWordCountData(year, month, plugin);
       } catch (err) {
         Logger.error('getWordStatisticsData > Failed to get month data: ' + err);
         const daysInMonth = new Date(year, month, 0).getDate();
@@ -100,7 +119,9 @@ export function getWordStatisticsData(plugin: DashboardPlugin): WordStatisticsDa
     },
     getWeekData: async () => {
       try {
-        return await getWeekWordCountData(plugin);
+        return useActualWordCount
+          ? await getActualWeekWordCountData(plugin)
+          : await getWeekWordCountData(plugin);
       } catch (err) {
         Logger.error('getWordStatisticsData > Failed to get week data: ' + err);
         return {
@@ -118,4 +139,4 @@ export function getWordStatisticsData(plugin: DashboardPlugin): WordStatisticsDa
       }
     }
   };
-} 
+}
